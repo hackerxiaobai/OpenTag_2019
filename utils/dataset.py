@@ -3,7 +3,7 @@ import torch
 from torch.utils.data import Dataset,DataLoader
 
 class MyDataset(Dataset):
-    def __init__(self, X, Y, att, *args, **kwargs):
+    def __init__(self, X, Y, att):
         self.data = [{'x':X[i],'y':Y[i],'att':att[i]} for i in range(X.shape[0])]
 
     def __getitem__(self, index):
@@ -11,6 +11,7 @@ class MyDataset(Dataset):
 
     def __len__(self):
         return len(self.data)
+
 
 def get_dataloader(opt):
     with open(opt.pickle_path, 'rb') as inp:
@@ -32,11 +33,14 @@ def get_dataloader(opt):
     valid_dataset = MyDataset(valid_x, valid_y, valid_att)
     test_dataset = MyDataset(test_x, test_y, test_att)
 
-    train_dataloader = DataLoader(train_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=opt.num_workers)
-    valid_dataloader = DataLoader(valid_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=opt.num_workers)
-    test_dataloader = DataLoader(test_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=opt.num_workers)
-
-    return train_dataloader,valid_dataloader,test_dataloader
+    try:
+        train_dataloader = DataLoader(train_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=opt.num_workers)
+        valid_dataloader = DataLoader(valid_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=opt.num_workers)
+        test_dataloader = DataLoader(test_dataset, batch_size=opt.batch_size, shuffle=True, num_workers=opt.num_workers)
+        return train_dataloader,valid_dataloader,test_dataloader
+    except:
+        pass
+    return None
 
 # if __name__=='__main__':
 #     train_dataloader, valid_dataloader, test_dataloader = get_dataloader()

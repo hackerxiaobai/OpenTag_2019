@@ -1,6 +1,6 @@
 # OpenTag_2019
 [Scaling Up Open Tagging from Tens to Thousands: Comprehension Empowered Attribute Value Extraction from Product Title](https://www.aclweb.org/anthology/P19-1514)
-> 该论文是在[OpenTag: Open Attribute Value Extraction from Product Profiles](https://arxiv.org/pdf/1806.01264.pdf)的基础上做的改进，大体思路其实没什么特别大的亮点。模型结构如下：
+> 该论文是在[OpenTag: Open Attribute Value Extraction from Product Profiles](https://arxiv.org/pdf/1806.01264.pdf)的基础上做的改进。模型结构如下：
 
 ![模型结构](/img/1.png)
 
@@ -23,3 +23,13 @@ python data_process.py 可以得到 中文品牌_适用季节.pkl
 
 ### run
 1. python main.py train --batch_size=128 即可运行
+2. 相应的配置可以更改config.py
+
+### result
+> 没有很仔细的去调参，该结果看看就好了。需要注意的是使用bert时，lr应该在2e-5、3e-5等，bert对学习率还是非常敏感的
+
++ LSTM_CRF
+![lstm_crf](/img/2.png)
+
++ OpenTag_2019
+![opentag_2019](/img/3.png)

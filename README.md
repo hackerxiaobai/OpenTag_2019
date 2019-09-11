@@ -10,6 +10,7 @@
 > 3. sklearn
 > 4. seqeval
 > 5. tqdm
+> 6. torchcrf
 
 ### data
 1. data目录下的raw.txt 是全量数据，中文品牌_适用季节.pkl 是从中抽出用来实验的小数据集
